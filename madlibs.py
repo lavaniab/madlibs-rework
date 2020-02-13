@@ -45,19 +45,19 @@ def greet_person():
 @app.route('/game')
 def show_madlib_form():
     """get the user response"""
-    response = request.args.get("value")
+    response = request.args.get("yes")
 
-    if response == True:
-        return render_template("game.html", value="response") # possible refactor single return
-    if response == False:
-        return render_template("goodbye.html", value="response")
+    if response:
+        return render_template("game.html")# possible refactor single return
+    else:
+        return render_template("goodbye.html")
 
 
 @app.route('/madlib')
 def show_madlib():
     """players madlib"""
     name_input = request.args.get("person")
-    return render_template("madlib.html", person="name_input")
+    return render_template("madlib.html", person=name_input)
 
 
 if __name__ == '__main__':
